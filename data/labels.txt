@@ -1,1 +1,8 @@
-ak47
+car ~truncated 
+van ~truncated 
+truck ~truncated 
+bus ~truncated 
+other ~truncated 
+pedestrian ~truncated 
+cyclist ~truncated 
+ignored

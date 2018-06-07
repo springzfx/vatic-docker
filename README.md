@@ -1,11 +1,12 @@
-# vatic-docker [![Build Status](https://github.com/NPSVisionLab/vatic-docker.svg?branch=master)](https://github.com/NPSVisionLab/vatic-docker)
-
 # vatic-docker - Packaged up Vatic video annotation tool
 
 ## What is vatic-docker
 
 Dockerfile and configuration files for using VATIC in a Docker container. Uses the VATIC software located at https://github.com/cvondrick/vatic.  This docker container will start an apache web server that will allow you to create annotation labels from within a browser and save those annotations to an xml file.  See the VATIC github site for a description of VATIC. Currently "offline mode" is the only mode supported.
 
+## build vatic docker image
+
+run ./build.sh to build vatic docker image called autonomous/vatic-docker
 
 ## SETUP
 
@@ -19,18 +20,15 @@ If you are using a docker-machine, you will have to start it and run docker-mach
 
 ## RUNNING 
 
-To start the container run the following command:
+To start this vatic container run following command:
 
-      docker run -it -p 8111:80 -v $PWD/data:/root/vatic/data npsvisionlab/vatic-docker /bin/bash -C /root/vatic/example.sh
-
-Note that $PWD is the parent directory of the data directory and that on windows the format should be "//c/directory_path/data" where c is the drive letter.
-Note that 8111 is the port that you will want to direct your browser to.  If that port is not available the choose another.
+	./vatic_up.sh
 
 This will start the apache web server and create image frames from the video located in "videos_in".  The frames will be put in "frames_in" and the video will be moved to the folder called "videos_out"
 
 Find the ip address that the server is running on.  If you are using docker-machine, 'docker-machine ip default' will show you ip-address the server is listening on.
 
-Open up a brower to point to http:/xxxx.xxxx.xxxx.xxxx:8111/directory where the xxxx.xxxx.xxxx.xxxx is the ip-address and 8111 is the port number (if not changed).
+Open up a brower to point to http:/xxxx.xxxx.xxxx.xxxx:8888/directory where the xxxx.xxxx.xxxx.xxxx is the ip-address and 8888 is the port number (if not changed).
 
 ## ANNOTATING A VIDEO
 
@@ -40,6 +38,8 @@ After you annotate your videos, you can just hit the button "Output Labels" to s
 
 When you are done annotating the video just type in <ctl>c or exit to close the docker container.
 
-## Generating Matlab labels
+## MORE
 
-The software is setup to generate labelme annotation.  To generate matlab annotation, copy the myphp.php.matlab to the public/directory/myphp.php file. Then exit the docker terminal and re-run the docker command.  Now when you generate the output it will be in matlab format.
+for more detail, please refer to https://github.com/cvondrick/vatic
+another sources https://github.com/NPSVisionLab/vatic-docker
+
